@@ -31,6 +31,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Opportunity whereJobTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Opportunity whereRequirements($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Opportunity whereUpdatedAt($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Activity> $activities
+ * @property-read int|null $activities_count
  * @mixin \Eloquent
  */
 class Opportunity extends Model

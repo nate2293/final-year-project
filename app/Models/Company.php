@@ -28,6 +28,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereIndustry($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereUpdatedAt($value)
+ * @property int $id
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Company whereId($value)
  * @mixin \Eloquent
  */
 class Company extends Model

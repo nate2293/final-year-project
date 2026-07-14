@@ -1,52 +1,34 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HelpController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentDocumentController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AnalyticsController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\OpportunityController;
 
 
 // ======= Authenticated app routes =======
 Route::middleware('auth')->group(function () {
 
-    Route::view('/', 'welcome')->name('home');
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
     Route::view('/about', 'about')->name('about');
     Route::view('/contact', 'contact')->name('contact');
 
     Route::get('/help', [HelpController::class, 'index'])->name('help');
 
-    // Analytics dashboard
-    Route::get('/analytics', [AnalyticsController::class, 'index'])
-        ->name('analytics.index');
 
-    // Applications (MUST be inside auth)
-    // Route::get('/applications', [ApplicationController::class, 'index'])
-    //     ->name('applications.index');
-
-    // Route::get('/applications/create', [ApplicationController::class, 'create'])
-    //     ->name('applications.create');
-
-    // Route::post('/applications', [ApplicationController::class, 'store'])
-    //     ->name('applications.store');
-
-    // PDF export
-    Route::get('/applications/report/download', [ActivityController::class, 'downloadReport'])
-        ->name('applications.report.download');
-
-    Route::resource('applications', ActivityController::class)->except(['show']);
-
-
-
-
-    // // Engagement Log (Applications)
-    // Route::get('/applications', [ApplicationController::class, 'index'])->name('applications.index');
-    // Route::get('/applications/create', [ApplicationController::class, 'create'])->name('applications.create');
-    // Route::post('/applications', [ApplicationController::class, 'store'])->name('applications.store');
-    // Route::get('/applications/{application}/edit', [ApplicationController::class, 'edit'])->name('applications.edit');
-    // Route::put('/applications/{application}', [ApplicationController::class, 'update'])->name('applications.update');
-    // Route::delete('/applications/{application}', [ApplicationController::class, 'destroy'])->name('applications.destroy');
+    // This single line creates all standard crud routes for your controller.
+    Route::resource('activities', ActivityController::class);
+    Route::get('/opportunities', [OpportunityController::class, 'index'])
+        ->name('opportunities.index');
+    Route::get('/opportunities/{opportunity}', [OpportunityController::class, 'show'])
+        ->name('opportunities.show');
+    // Create URL that points to the controller method called downloadPdf()
+    Route::get('/activities/pdf/download', [ActivityController::class, 'downloadPdf'])
+        ->name('activities.pdf');
 });
 
 

@@ -1,7 +1,7 @@
 <x-layouts.guest>
 
 
-    <x-ui.card class="bg-white w-md md:w-3xl dark:bg-gray-800 shadow-lg p-6">
+    <x-ui::card class="bg-white w-md md:w-3xl dark:bg-gray-800 shadow-lg p-6">
 
         <div class="flex justify-center mt-4">
             <svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -12,37 +12,37 @@
             </svg>
         </div>
 
-        <x-ui.heading level="3" class="text-center mt-4">
+        <x-ui::heading level="3" class="text-center mt-4">
             Login
-        </x-ui.heading>
+        </x-ui::heading>
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <div class="mt-2">
-                <x-ui.form.input label="Email" name="email" type="email" />
+                <x-ui::form.input label="Email" name="email" type="email" />
             </div>
 
             <div class="mt-2">
-                <x-ui.form.input label="Password" name="password" type="password" />
+                <x-ui::form.input label="Password" name="password" type="password" />
                 @if (Route::has('password.request'))
-                    <x-ui.link href="{{ route('password.request') }}"
-                        class="!font-light !text-sm !text-gray-600">Forgot password?</x-ui.link>
+                    <x-ui::link href="{{ route('password.request') }}"
+                        class="!font-light !text-sm !text-gray-600">Forgot password?</x-ui::link>
                 @endif
             </div>
 
             <div class="mt-4 flex justify-between">
 
-                <x-ui.button variant="dark" type="submit">Login</x-ui.button>
+                <x-ui::button variant="dark" type="submit">Login</x-ui::button>
 
                 <p class="text-sm text-gray-600 dark:text-gray-400">
                     Don't have an account?
-                    <x-ui.link link="light" href="{{ route('register') }}" class="!text-blue-600">Register Here</x-ui.link>
+                    <x-ui::link link="light" href="{{ route('register') }}" class="!text-blue-600">Register Here</x-ui::link>
                 </p>
             </div>
 
         </form>
-    </x-ui.card>
+    </x-ui::card>
 
 
 </x-layouts.guest>

@@ -32,7 +32,7 @@ class DatabaseSeeder extends Seeder
 
         // Create Companys
         Company::factory()->count(5)->create()->after(function (Company $company) {
-            $company->opportunities()->createMany(Opportunity::factory(rand(0, 5))->make()->toArray());
+            $company->opportunities()->createMany(Opportunity::factory()->count(10)->make()->toArray());
         });
 
         // Create students

@@ -2,9 +2,11 @@
 
 namespace App\Models;
 
+use App\Traits\FileUpload;
 use App\Enums\ActivityType;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Traits\Sortable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * @property int $id
@@ -30,11 +32,47 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereStatus($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereStudentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Application whereUpdatedAt($value)
+ * @property ActivityType $activity_type
+ * @property \Illuminate\Support\Carbon|null $activity_date
+ * @property string|null $notes
+ * @property string|null $evidence_link
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity whereActivityDate($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity whereActivityType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity whereEvidenceLink($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity whereNotes($value)
+ * @property-read array $config_for
+ * @property-read string $default_file
  * @mixin \Eloquent
  */
 class Activity extends Model
 {
-    use HasFactory;
+    use HasFactory, FileUpload, Sortable;
+
+    /**
+     * Define one or many file attributes.
+     */
+
+    protected function fileUploads(): array
+    {
+        return [
+            'evidence_link' => [ 'as_base64' => false, ],
+        ];
+    }
+
+    protected $fillable = [
+        'student_id',
+        'opportunity_id',
+        'activity_type',
+        'activity_date',
+        'notes',
+        'evidence_link',
+    ];
+
+    protected $sortable = [
+        'opportunity_id' => 'opportunity_id, activity_date',
+        'activity_type',
+        'activity_date',
+    ];
 
     protected $guarded = [
         'id'
@@ -43,7 +81,8 @@ class Activity extends Model
     protected function casts()
     {
         return [
-            'activity_type' => ActivityType::class
+            'activity_type' => ActivityType::class,
+            'activity_date' => 'date',
         ];
     }
 

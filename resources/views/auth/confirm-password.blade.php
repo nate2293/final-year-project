@@ -1,6 +1,6 @@
 <x-layouts.app>
     <!-- Confirm Password Card -->
-    <x-ui.card>
+    <x-ui::card>
         <div class="p-6">
             <div class="text-center mb-6">
                 <h1 class="text-2xl font-bold text-gray-800 dark:text-gray-100">Confirm Password</h1>
@@ -13,19 +13,19 @@
                 @csrf
                 <!-- Password Input -->
                 <div class="mb-4">
-                    <x-ui.form.input name="password" type="password" label="Password" placeholder="••••••••" />
+                    <x-ui::form.input name="password" type="password" label="Password" placeholder="••••••••" />
                 </div>
 
                 <!-- Confirm Button -->
-                <x-ui.button variant="dark" type="submit" class="w-full mt-6">
+                <x-ui::button variant="dark" type="submit" class="w-full mt-6">
                     Confirm Password
-                </x-ui.button>
+                </x-ui::button>
             </form>
 
             <!-- Forgot Password Link -->
             <div class="text-center mt-6">
-                <x-ui.link href="{{ route('password.request') }}">Forgot your password?</x-ui.link>
+                <x-ui::link href="{{ route('password.request') }}">Forgot your password?</x-ui::link>
             </div>
         </div>
-    </x-ui.card>
+    </x-ui::card>
 </x-layouts.app>

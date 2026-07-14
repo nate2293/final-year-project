@@ -24,8 +24,8 @@ These users are created automatically when you run `php artisan migrate --seed`.
 
 ### How do I switch between layouts?
 Edit `resources/views/components/layouts/app.blade.php` and change the layout import:
-- **Sidebar layout**: `<x-ui.layout.sidebar>`
-- **Navbar layout**: `<x-ui.layout.navbar>`
+- **Sidebar layout**: `<x-ui::layout.sidebar>`
+- **Navbar layout**: `<x-ui::layout.navbar>`
 
 ### How do I change the database from SQLite?
 1. Update your `.env` file with your database credentials
@@ -55,13 +55,13 @@ Create `.md` files in `resources/views/help/` or subdirectories. The help system
 ### How do I create custom UI components?
 Use the termon/ui components as building blocks:
 ```blade
-<x-ui.card>
+<x-ui::card>
     <slot:header>Optional Header</slot:header>
  
     <!-- Your content -->
  
     <slot:footer>Optional Footer</slot:footer>
-</x-ui.card>
+</x-ui::card>
 ```
 
 ### How do I add Livewire components?

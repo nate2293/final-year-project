@@ -11,7 +11,7 @@
 
    <body class="text-sm">
       <!-- choose the layout style -->
-      <x-ui.flash position="bottom-right" />
+      <x-ui::flash position="bottom-right" />
       <x-layouts.sidebar>  
             {{ $slot }}            
       </x-layouts.sidebar>

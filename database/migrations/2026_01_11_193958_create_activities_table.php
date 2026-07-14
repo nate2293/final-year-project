@@ -39,8 +39,10 @@ return new class extends Migration
      * Reverse the migrations.
      * Drops the entire table because up() created the entire table.
      */
+
     public function down(): void
     {
+        //Schema::dropIfExists('activities');
         Schema::dropIfExists('applications');
     }
 };

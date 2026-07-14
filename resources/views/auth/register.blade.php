@@ -1,7 +1,7 @@
 
 <x-layouts.guest>
 
-  <x-ui.card class="bg-white w-md md:w-3xl dark:bg-gray-800 shadow-lg p-6">
+  <x-ui::card class="bg-white w-md md:w-3xl dark:bg-gray-800 shadow-lg p-6">
 
         <div class="flex justify-center mt-4">
             <svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -12,9 +12,9 @@
             </svg>
         </div>
 
-        <x-ui.heading level="3" class="text-center mt-4">
+        <x-ui::heading level="3" class="text-center mt-4">
            Register
-        </x-ui.heading>
+        </x-ui::heading>
 
 
         <form method="POST" action="{{ route('register') }}">
@@ -22,36 +22,36 @@
 
             <!-- name -->
             <div class="mt-2">
-                <x-ui.form.input label="Name" name="name" type="text" />
+                <x-ui::form.input label="Name" name="name" type="text" />
             </div>
 
             <!-- email -->
             <div class="mt-2">
-                <x-ui.form.input label="Email" name="email" type="email" />
+                <x-ui::form.input label="Email" name="email" type="email" />
             </div>
 
             <!-- passwords -->
             <div class="flex gap-2 mt-2">
                 <div class="w-full">
-                    <x-ui.form.input label="Password" name="password" type="password" />
+                    <x-ui::form.input label="Password" name="password" type="password" />
                 </div>
                 <div class="w-full">
-                    <x-ui.form.input label="Confirm Password" name="password_confirmation" type="password" />
+                    <x-ui::form.input label="Confirm Password" name="password_confirmation" type="password" />
                 </div>
             </div>
 
             <!-- submit -->
             <div class="mt-4 flex justify-between">
-                <x-ui.button variant="dark" type="submit">Register</x-ui.button>
+                <x-ui::button variant="dark" type="submit">Register</x-ui::button>
                  <div class="text-center mt-6">
                 <p class="text-sm text-gray-600 dark:text-gray-400">
                     Already have an account?
-                    <x-ui.link link="light" href="{{ route('login') }}" class="!text-blue-600">Login Here</x-ui.link>
+                    <x-ui::link link="light" href="{{ route('login') }}" class="!text-blue-600">Login Here</x-ui::link>
                 </p>
             </div>
 
         </form>
-    </x-ui.card>
+    </x-ui::card>
 
 </x-layouts.guest>
 

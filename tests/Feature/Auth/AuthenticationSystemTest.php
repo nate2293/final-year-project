@@ -79,9 +79,11 @@ class AuthenticationSystemTest extends TestCase
         $this->assertArrayHasKey('admin', $options);
         $this->assertArrayHasKey('author', $options);
         $this->assertArrayHasKey('guest', $options);
+        $this->assertArrayHasKey('user', $options);
         $this->assertEquals('ADMIN', $options['admin']);
         $this->assertEquals('AUTHOR', $options['author']);
         $this->assertEquals('GUEST', $options['guest']);
+        $this->assertEquals('USER', $options['user']);
     }
 
     public function test_role_enum_provides_values(): void
@@ -92,7 +94,8 @@ class AuthenticationSystemTest extends TestCase
         $this->assertContains('admin', $values);
         $this->assertContains('author', $values);
         $this->assertContains('guest', $values);
-        $this->assertCount(3, $values);
+        $this->assertContains('user', $values);
+        $this->assertCount(4, $values);
     }
 
     public function test_user_model_has_correct_fillable_attributes(): void

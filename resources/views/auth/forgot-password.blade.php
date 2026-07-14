@@ -1,6 +1,6 @@
 <x-layouts.guest>
     <!-- Forgot Password Card -->
-    <x-ui.card class="bg-white w-md md:w-xl">
+    <x-ui::card class="bg-white w-md md:w-xl">
 
         <div class="flex justify-center mt-4">
             <svg class="" width="28" height="28" viewBox="0 0 24 24" fill="none"
@@ -11,11 +11,11 @@
             </svg>
         </div>
 
-        <x-ui.heading level="4" class="text-center mt-4">
+        <x-ui::heading level="4" class="text-center mt-4">
             <p>Forgot Password</p>
             <p class="text-sm text-gray-600 dark:text-gray-400 mt-1">
                 {{ __('Enter your email to receive a password reset link') }}</p>
-        </x-ui.heading>
+        </x-ui::heading>
 
 
         <div class="p-6">
@@ -29,19 +29,19 @@
                 @csrf
                 <!-- Email Input -->
                 <div class="mt-2">
-                    <x-ui.form.input label="Email" name="email" type="email" placeholder="your@email.com" />
+                    <x-ui::form.input label="Email" name="email" type="email" placeholder="your@email.com" />
                 </div>
 
                 <!-- Send Reset Link Button -->
-                <x-ui.button variant="dark" type="submit" class="w-full mt-6">
+                <x-ui::button variant="dark" type="submit" class="w-full mt-6">
                     Send Password Reset Link
-                </x-ui.button>
+                </x-ui::button>
             </form>
 
             <!-- Back to Login Link -->
             <div class="text-center mt-6">
-                <x-ui.link href="{{ route('login') }}">Back to login</x-ui.link>
+                <x-ui::link href="{{ route('login') }}">Back to login</x-ui::link>
             </div>
         </div>
-    </x-ui.card>
+    </x-ui::card>
 </x-layouts.guest>
