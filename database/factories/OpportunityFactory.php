@@ -21,7 +21,7 @@ class OpportunityFactory extends Factory
     {
         return [
             // Create company automatically.
-            // 'company_id' => Company::factory(),
+            'company_id' => Company::factory(),
 
             'job_title' => $this->faker->randomElement([
                 'Software Developer',

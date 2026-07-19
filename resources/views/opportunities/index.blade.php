@@ -28,8 +28,7 @@
                             onchange="this.form.submit()" />
                     </div>
 
-                    <div class="flex flex-col justify-end"> 
-                        <x-ui::link href="{{ route('opportunities.index') }}"
+                    <div class="flex flex-col justify-end"> <x-ui::link href="{{ route('opportunities.index') }}"
                             variant="oblue">
                             Clear Filters
                         </x-ui::link>
@@ -43,18 +42,14 @@
 
                 @foreach ($opportunities as $opportunity)
                     <x-opportunity-card :id="$opportunity->id" :title="$opportunity->job_title" :company="$opportunity->company->company_name" :category="$opportunity->job_category"
-                        :location="$opportunity->company->company_address" {{-- :deadline="\Carbon\Carbon::parse($opportunity->application_deadline)->format('d M Y')" --}} :deadline="$opportunity->application_deadline" :description="$opportunity->job_description" :requirements="$opportunity->requirements"
-                        :status="null" :activities="$opportunity->activities" />
+                        :location="$opportunity->company->company_address" :deadline="$opportunity->application_deadline" :description="$opportunity->job_description" :requirements="$opportunity->requirements" :status="null"
+                        :activities="$opportunity->activities" />
                 @endforeach
             </div>
 
             <div class="mt-4 px-4 pb-4">
                 <x-ui::paginator :items="$opportunities" size="4" />
             </div>
-
-            {{-- <div class="mt-10">
-        {{ $opportunities->links() }}
-    </div> --}}
 
         </x-ui::card>
 

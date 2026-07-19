@@ -16,22 +16,47 @@
 
             </x-slot:header>
 
-            {{-- Statistics --}}
-            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4 mb-8">
+            {{-- Statistics & Calendar --}}
+            <div class="grid grid-cols-1 xl:grid-cols-3 gap-6 mb-8">
 
-                <x-ui::statistic title="Applications" :value="$applications" variant="blue" description="Applications Submitted" />
+                {{-- Statistics --}}
+                <div class="xl:col-span-1 space-y-4">
 
-                <x-ui::statistic title="Interviews" :value="$interviews" variant="blue" description="Interviews Received" />
+                    <x-ui::statistic title="Applications" :value="$applications" variant="blue" description="Applications Submitted" />
 
-                <x-ui::statistic title="Assessments" :value="$assessments" variant="blue" description="Pending Assessments" />
+                    <x-ui::statistic title="Interviews" :value="$interviews" variant="blue" description="Interviews Received" />
 
-                <x-ui::statistic title="Offers" :value="$offers" variant="blue" description="Offers Received" />
+                    <x-ui::statistic title="Assessments" :value="$assessments" variant="blue" description="Pending Assessments" />
+
+                    <x-ui::statistic title="Offers" :value="$offers" variant="blue" description="Offers Received" />
+
+                </div>
+
+                {{-- Calendar --}}
+                <div class="xl:col-span-2">
+
+                    <x-ui::card>
+
+                        <x-slot:header>
+
+                            <x-ui::heading level="5">
+                                Activity Calendar
+                            </x-ui::heading>
+
+                        </x-slot:header>
+
+                        <div id="calendar"></div>
+
+                    </x-ui::card>
+
+                </div>
 
             </div>
 
             {{-- Dashboard Cards --}}
             <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
 
+                {{-- Recent Activity --}}
                 <x-ui::card>
 
                     <x-slot:header>
@@ -41,7 +66,6 @@
                         </x-ui::heading>
 
                     </x-slot:header>
-
 
                     <div class="divide-y divide-gray-200 dark:divide-gray-700">
 
@@ -81,7 +105,6 @@
 
                     </div>
 
-
                     <x-slot:footer>
 
                         <div class="flex justify-end">
@@ -96,8 +119,8 @@
 
                 </x-ui::card>
 
+                {{-- Latest Opportunities --}}
                 <x-ui::card>
-
 
                     <x-slot:header>
 
@@ -133,7 +156,6 @@
                                     Not Applied
                                 </x-ui::badge>
 
-
                             </div>
 
                         @empty
@@ -156,8 +178,6 @@
                         </div>
 
                     </x-slot:footer>
-
-
 
                 </x-ui::card>
 

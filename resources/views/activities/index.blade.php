@@ -12,8 +12,7 @@
 
                 <div class="flex items-center gap-2">
 
-                    <x-ui::link href="{{ route('activities.create') }}"
-                    variant="blue">
+                    <x-ui::link href="{{ route('activities.create') }}" variant="blue">
                         Log an Activity
                     </x-ui::link>
 
@@ -21,8 +20,8 @@
                         Download PDF
                     </x-ui::link>
 
-           
-                    
+
+
                 </div>
         </x-slot:header>
 

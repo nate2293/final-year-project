@@ -12,7 +12,6 @@
 ])
 
 @php
-    // $modal = 'opportunity-' . $id;
     use Carbon\Carbon;
 
     $modal = 'opportunity-' . $id;
@@ -88,6 +87,10 @@
                     {{ $deadlineDate->format('d M Y') }} at 23:59
                 </span>
             </p>
+
+            <span class="text-sm font-semibold {{ $deadlineColour }}">
+                {{ $deadlineLabel }}
+            </span>
 
         </div>
 

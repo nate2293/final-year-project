@@ -2,86 +2,124 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
-use App\Models\Company;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\Test;
+
+use App\Models\User;
 use App\Models\Student;
+use App\Models\Company;
 use App\Models\Opportunity;
 use App\Models\Activity;
 
-use function PHPUnit\Framework\assertNotNull;
-
 class OpportunityTest extends TestCase
 {
-    // Wipes and re-runs database, keepoing tests isolated
     use RefreshDatabase;
 
-    public function test_opportunity_belongs_to_company(): void
+    #[Test]
+    public function authenticated_user_can_view_the_opportunity_index()
     {
-        // --------------------------
-        // Arrange
-        // --------------------------
+        $user = User::factory()->create();
 
-        // Create parent record 
-        $company = Company::factory()->create();
+        Opportunity::factory()->count(5)->create();
 
-        // Create child and provide comapny_id
-        $opportunity = Opportunity::factory()->create([
-            'company_id' => $company->id,
-        ]);
+        $response = $this
+            ->actingAs($user)
+            ->get(route('opportunities.index'));
 
-        // ---------------------------
-        // Act
-        // ---------------------------
-        // Load the belongsTo relationship
-        $relatedCompany = $opportunity->company;
+        $response->assertOk();
 
+        $response->assertViewIs('opportunities.index');
 
-        // ----------------------------
-        // Assert
-        // ----------------------------
-        $this->assertNotNull($relatedCompany);
+        $response->assertViewHas('opportunities');
 
-        // is() this checks model table / PK
-        $this->assertTrue($relatedCompany->is($company));
+        $response->assertViewHas('statusOptions');
     }
 
-    public function test_opportunity_has_many_activities(): void
+    #[Test]
+    public function authenticated_user_can_search_for_an_opportunity()
     {
-        // -----------------------------
-        // Arrange
-        // -----------------------------
+        $user = User::factory()->create();
 
-        $company = Company::factory()->create();
-
-        $opportunity = Opportunity::factory()->create([
-            'company_id' => $company->id
+        $company = Company::factory()->create([
+            'company_name' => 'Google',
         ]);
 
-        $student = Student::factory()->create();
+        Opportunity::factory()->create([
+            'company_id' => $company->id,
+            'job_title' => 'Software Engineer',
+        ]);
 
-        $a1 = Activity::factory()->create([
+        Opportunity::factory()->create([
+            'job_title' => 'Cyber Security',
+        ]);
+
+        $response = $this
+            ->actingAs($user)
+            ->get(route('opportunities.index', [
+                'search' => 'Software',
+            ]));
+
+        $response->assertOk();
+
+        $response->assertSee('Software');
+
+        $response->assertDontSee('Cyber Security');
+    }
+
+    #[Test]
+    public function authenticated_user_can_filter_opportunities_by_activity_type()
+    {
+        $user = User::factory()->create();
+
+        $student = Student::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
+        $applicationOpportunity = Opportunity::factory()->create();
+
+        $interviewOpportunity = Opportunity::factory()->create();
+
+        Activity::factory()->create([
             'student_id' => $student->id,
-            'opportunity_id' => $opportunity->id,
+            'opportunity_id' => $applicationOpportunity->id,
+            'activity_type' => 'application',
         ]);
 
-        $a2 = Activity::factory()->create([
+        Activity::factory()->create([
             'student_id' => $student->id,
-            'opportunity_id' => $opportunity->id,
+            'opportunity_id' => $interviewOpportunity->id,
+            'activity_type' => 'interview',
         ]);
 
-        // -----------------------------
-        // ACT
-        // -----------------------------
-        // Loads activities where opportunity_id == $opportunity->id
-        $activities = $opportunity->activities;
+        $response = $this
+            ->actingAs($user)
+            ->get(route('opportunities.index', [
+                'status' => 'application',
+            ]));
 
-        // -----------------------------
-        // ASSERT
-        // -----------------------------
-        $this->assertCount(2, $activities);
-        $this->assertTrue($activities->contains($a1));
-        $this->assertTrue($activities->contains($a2));
+        $response->assertOk();
+
+        $response->assertSee($applicationOpportunity->job_title);
+
+        $response->assertDontSee($interviewOpportunity->job_title);
+    }
+
+    #[Test]
+    public function authenticated_user_can_view_a_single_opportunity()
+    {
+        $user = User::factory()->create();
+
+        $opportunity = Opportunity::factory()->create();
+
+        $response = $this
+            ->actingAs($user)
+            ->get(route('opportunities.show', $opportunity));
+
+        $response->assertOk();
+
+        $response->assertViewIs('opportunities.show');
+
+        $response->assertViewHas('opportunity', $opportunity);
     }
 }

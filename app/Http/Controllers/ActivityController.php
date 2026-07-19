@@ -173,7 +173,9 @@ class ActivityController extends Controller
 
         Activity::create($data);
 
-        return redirect()->route('activities.index');
+        return redirect()
+            ->route('activities.index')
+            ->with('success', 'Activity logged successfully.');
     }
 
     /**
@@ -221,6 +223,7 @@ class ActivityController extends Controller
     {
         $activity->delete();
 
-        return redirect()->route('activities.index');
+        return redirect()->route('activities.index')
+            ->with('success', 'Activity deleted successfully.');
     }
 }

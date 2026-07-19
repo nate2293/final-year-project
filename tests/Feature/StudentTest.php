@@ -2,13 +2,12 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\Activity;
 use App\Models\Company;
 use App\Models\Student;
 use App\Models\Opportunity;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class StudentTest extends TestCase
 {
@@ -19,13 +18,11 @@ class StudentTest extends TestCase
         // -------------------------
         // Arrange
         // -------------------------
-        // Student factorys creates a user automatically
         $student = Student::factory()->create();
 
         // -------------------------
         // Act
         // -------------------------
-        // Triggers students belong to user class
         $user = $student->user;
 
         // -------------------------
@@ -33,43 +30,71 @@ class StudentTest extends TestCase
         // -------------------------
         $this->assertNotNull($user);
 
-        // this ensures FK matches actual users id
         $this->assertEquals($student->user_id, $user->id);
     }
 
     public function test_student_has_many_activities(): void
     {
-
-        // ------------------------------
+        // -------------------------
         // Arrange
-        // ------------------------------
+        // -------------------------
         $student = Student::factory()->create();
 
         $company = Company::factory()->create();
-        $opportunity = Opportunity::factory()->create(['company_id' => $company->id]);
 
-        // Create two activities for this student and this opportunity.
-        $a1 = Activity::factory()->create([
+        $opportunity = Opportunity::factory()->create([
+            'company_id' => $company->id,
+        ]);
+
+        $activityOne = Activity::factory()->create([
             'student_id' => $student->id,
             'opportunity_id' => $opportunity->id,
         ]);
 
-        $a2 = Activity::factory()->create([
+        $activityTwo = Activity::factory()->create([
             'student_id' => $student->id,
             'opportunity_id' => $opportunity->id,
         ]);
 
-        // ---------------------------------
+        // -------------------------
         // Act
-        // ---------------------------------
-        // Loads activities where student_id == student->id
+        // -------------------------
         $activities = $student->activities;
 
-        // ---------------------------------
-        // ASSERT
-        // ---------------------------------
+        // -------------------------
+        // Assert
+        // -------------------------
         $this->assertCount(2, $activities);
-        $this->assertTrue($activities->contains($a1));
-        $this->assertTrue($activities->contains($a2));
+
+        $this->assertTrue($activities->contains($activityOne));
+
+        $this->assertTrue($activities->contains($activityTwo));
+    }
+
+    public function test_activity_belongs_to_student(): void
+    {
+        // -------------------------
+        // Arrange
+        // -------------------------
+        $student = Student::factory()->create();
+
+        $opportunity = Opportunity::factory()->create();
+
+        $activity = Activity::factory()->create([
+            'student_id' => $student->id,
+            'opportunity_id' => $opportunity->id,
+        ]);
+
+        // -------------------------
+        // Act
+        // -------------------------
+        $relatedStudent = $activity->student;
+
+        // -------------------------
+        // Assert
+        // -------------------------
+        $this->assertNotNull($relatedStudent);
+
+        $this->assertEquals($student->id, $relatedStudent->id);
     }
 }

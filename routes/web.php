@@ -1,19 +1,28 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\HelpController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\StudentDocumentController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\AnalyticsController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HelpController;
 use App\Http\Controllers\OpportunityController;
+use App\Http\Controllers\StudentDocumentController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 
 // ======= Authenticated app routes =======
 Route::middleware('auth')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('home');
+    Route::middleware('auth')->group(function () {
+
+    Route::get('/', [DashboardController::class, 'index'])->name('home');
+
+    Route::get('/calendar/events', [CalendarController::class, 'events'])
+        ->name('calendar.events');
+
+});
     Route::view('/about', 'about')->name('about');
     Route::view('/contact', 'contact')->name('contact');
 
