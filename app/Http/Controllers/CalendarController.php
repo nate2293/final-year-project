@@ -24,8 +24,19 @@ class CalendarController extends Controller
                     default       => '#3b82f6',
                 };
 
+                $icon = match ($activity->activity_type->value) {
+                    'application' => '📝',
+                    'interview'   => '🎤',
+                    'assessment'  => '📋',
+                    'offer'       => '🎉',
+                    'rejection'   => '❌',
+                    'follow_up'   => '📞',
+                    'networking'  => '🤝',
+                    default       => '📌',
+                };
+
                 return [
-                    'title' => ucfirst(str_replace('_', ' ', $activity->activity_type->value)),
+                    'title' => $icon . ' ' . ucfirst(str_replace('_', ' ', $activity->activity_type->value)),
                     'start' => $activity->activity_date->format('Y-m-d'),
 
                     'backgroundColor' => $colour,
@@ -48,12 +59,12 @@ class CalendarController extends Controller
             ->map(function ($opportunity) {
 
                 return [
-                    'title' => 'Deadline',
+                    'title' => '⏰ Deadline',
 
                     'start' => \Carbon\Carbon::parse($opportunity->application_deadline)->format('Y-m-d'),
 
-                    'backgroundColor' => '#dc2626',
-                    'borderColor' => '#dc2626',
+                    'backgroundColor' => '#f59e0b', // Amber
+                    'borderColor' => '#f59e0b',
                     'textColor' => '#ffffff',
 
                     'extendedProps' => [
