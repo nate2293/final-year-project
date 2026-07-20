@@ -38,6 +38,8 @@ class CalendarController extends Controller
                 return [
                     'title' => $icon . ' ' . ucfirst(str_replace('_', ' ', $activity->activity_type->value)),
                     'start' => $activity->activity_date->format('Y-m-d'),
+                    'url' => route('activities.show', $activity),
+
 
                     'backgroundColor' => $colour,
                     'borderColor' => $colour,

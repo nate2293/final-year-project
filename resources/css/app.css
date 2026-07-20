@@ -2,7 +2,7 @@
 @plugin "@tailwindcss/typography";
 
 @source '../../vendor/termon/ui/src/resources/views/components/**/*.blade.php';
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.php';
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
@@ -36,8 +36,40 @@ FullCalendar Improvements
     color: #111827;
 }
 
+/* Calendar events */
+.fc-event {
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* Hover effect */
+.fc-event:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    z-index: 20;
+}
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 [x-cloak] {
     display: none !important;
+}
+
+/* Highlight today's date */
+.fc .fc-day-today {
+    background-color: #dbeafe !important;
+}
+
+/* Make today's date number stand out */
+.fc .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+    background-color: #2563eb;
+    color: #ffffff;
+    border-radius: 9999px;
+    width: 1.9rem;
+    height: 1.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin: 0.35rem;
 }

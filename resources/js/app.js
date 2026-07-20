@@ -12,11 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (calendarEl) {
         const calendar = new Calendar(calendarEl, {
-            plugins: [
-                dayGridPlugin,
-                timeGridPlugin,
-                interactionPlugin,
-            ],
+            plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
 
             initialView: "dayGridMonth",
 
@@ -27,6 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
             },
 
             events: "/calendar/events",
+
+            eventClick: function (info) {
+                info.jsEvent.preventDefault();
+
+                window.location.href = info.event.url;
+            },
 
             eventDidMount: function (info) {
                 tippy(info.el, {
