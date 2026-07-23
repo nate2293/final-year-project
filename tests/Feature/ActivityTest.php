@@ -175,68 +175,68 @@ class ActivityTest extends TestCase
     }
 
     #[Test]
-public function authenticated_user_can_update_an_activity()
-{
-    $user = User::factory()->create();
+    public function authenticated_user_can_update_an_activity()
+    {
+        $user = User::factory()->create();
 
-    $student = Student::factory()->create([
-        'user_id' => $user->id,
-    ]);
-
-    $activity = Activity::factory()->create([
-        'student_id' => $student->id,
-        'notes' => 'Old notes',
-    ]);
-
-    $opportunity = Opportunity::factory()->create();
-
-    $file = UploadedFile::fake()->create(
-        'updated-evidence.pdf',
-        100,
-        'application/pdf'
-    );
-
-    $response = $this
-        ->actingAs($user)
-        ->put(route('activities.update', $activity), [
-            'opportunity_id' => $opportunity->id,
-            'activity_type' => 'application',
-            'activity_date' => now()->toDateString(),
-            'notes' => 'Updated notes',
-            'evidence_link' => $file,
+        $student = Student::factory()->create([
+            'user_id' => $user->id,
         ]);
 
-    $response->assertRedirect(route('activities.index'));
+        $activity = Activity::factory()->create([
+            'student_id' => $student->id,
+            'notes' => 'Old notes',
+        ]);
 
-    $this->assertDatabaseHas('activities', [
-        'id' => $activity->id,
-        'notes' => 'Updated notes',
-    ]);
-}
+        $opportunity = Opportunity::factory()->create();
 
-#[Test]
-public function authenticated_user_can_delete_an_activity()
-{
-    $user = User::factory()->create();
+        $file = UploadedFile::fake()->create(
+            'updated-evidence.pdf',
+            100,
+            'application/pdf'
+        );
 
-    $student = Student::factory()->create([
-        'user_id' => $user->id,
-    ]);
+        $response = $this
+            ->actingAs($user)
+            ->put(route('activities.update', $activity), [
+                'opportunity_id' => $opportunity->id,
+                'activity_type' => 'application',
+                'activity_date' => now()->toDateString(),
+                'notes' => 'Updated notes',
+                'evidence_link' => $file,
+            ]);
 
-    $activity = Activity::factory()->create([
-        'student_id' => $student->id,
-    ]);
+        $response->assertRedirect(route('activities.index'));
 
-    $response = $this
-        ->actingAs($user)
-        ->delete(route('activities.destroy', $activity));
+        $this->assertDatabaseHas('activities', [
+            'id' => $activity->id,
+            'notes' => 'Updated notes',
+        ]);
+    }
 
-    $response->assertRedirect(route('activities.index'));
+    #[Test]
+    public function authenticated_user_can_delete_an_activity()
+    {
+        $user = User::factory()->create();
 
-    $response->assertSessionHas('success');
+        $student = Student::factory()->create([
+            'user_id' => $user->id,
+        ]);
 
-    $this->assertDatabaseMissing('activities', [
-        'id' => $activity->id,
-    ]);
-}
+        $activity = Activity::factory()->create([
+            'student_id' => $student->id,
+        ]);
+
+        $response = $this
+            ->actingAs($user)
+            ->delete(route('activities.destroy', $activity));
+
+        $response->assertRedirect(route('activities.index'));
+
+        $response->assertSessionHas('success');
+
+        $this->assertDatabaseMissing('activities', [
+            'id' => $activity->id,
+        ]);
+    }
 }

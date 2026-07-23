@@ -25,37 +25,13 @@
     <x-slot:navigation>
         <x-ui::sidebar.link href="/" icon="home" label="Dashboard" />
 
-        {{-- Company Dropdown --}}
-        {{-- <x-ui::sidebar.dropdown label="Company" icon="folder">
-            <x-ui::sidebar.link href="/about" icon="info" label="About Us" />
-            <x-ui::sidebar.link href="/contact" icon="mail" label="Contact Us" />
-        </x-ui::sidebar.dropdown>
-        @can('view', App\Models\User::class)
-            <x-ui::sidebar.link href="{{ route('users.index') }}" icon="user" label="Users" />
-        @endcan -- }} 
-
-        {{-- New documents tab where cvs and other files can be managed by students, creates new navigation. --}}
         <x-ui::sidebar.link href="{{ route('activities.index') }}" icon="list" label="Activity" />
-
-        {{-- <x-ui::sidebar.link 
-        href="{{ route('analytics.index') }}" icon="pie-chart" label="Analytics & Reporting" 
-    /> --}}
 
         <x-ui::sidebar.link :href="route('opportunities.index')" icon="briefcase" label="Opportunities" />
 
-        {{-- <x-ui::sidebar.link href="#" icon="bell" label="Tasks / Goals" />
-
-        <x-ui::sidebar.link href="#" icon="bell" label="Alerts" /> --}}
+        <x-ui::sidebar.link :href="route('applications.index')" icon="document" label="Applications" />
 
     </x-slot:navigation>
-
-
-
-    {{-- Secondary Navigation (Optional) --}}
-    {{-- <x-slot:secondary>
-        <x-ui::sidebar.link label="Home" href="/about" icon="info" />
-        <x-ui::sidebar.link @click="dark = !dark" icon="moon" />
-    </x-slot:secondary> --}}
 
     {{-- User Section - displays in toolbar when in mobile mode --}}
     <x-slot:user>

@@ -11,7 +11,7 @@ class OpportunityController extends Controller
     public function index()
     {
         $query = Opportunity::with(['company', 'activities'])
-        ->whereDate('application_deadline', '>=', now());
+            ->whereDate('application_deadline', '>=', now());
 
         $search = request('search');
         $status = request('status');

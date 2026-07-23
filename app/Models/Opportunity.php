@@ -43,9 +43,11 @@ class Opportunity extends Model
         'id'
     ];
 
-    protected function casts()
+    protected function casts(): array
     {
-        return [];
+        return [
+            'application_deadline' => 'date',
+        ];
     }
 
 

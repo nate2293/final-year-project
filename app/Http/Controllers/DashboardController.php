@@ -16,15 +16,15 @@ class DashboardController extends Controller
             ->take(3)
             ->get();
 
-            $latestOpportunities = Opportunity::with([
-        'company',
-    'activities' => function ($query) {
-        $query->latest('activity_date');
-    },
-])
-->latest()
-->take(3)
-->get();
+        $latestOpportunities = Opportunity::with([
+            'company',
+            'activities' => function ($query) {
+                $query->latest('activity_date');
+            },
+        ])
+            ->latest()
+            ->take(3)
+            ->get();
 
         $applications = Activity::where('activity_type', ActivityType::Application)->count();
 
