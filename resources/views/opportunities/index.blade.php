@@ -8,7 +8,7 @@
 
         <x-ui::card>
 
-            <x-ui::heading level="3" class="mb-2">
+            <x-ui::heading level="3" class="mt-5">
                 Opportunities
             </x-ui::heading>
 
@@ -38,7 +38,7 @@
 
             </form>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
 
                 @foreach ($opportunities as $opportunity)
                     <x-opportunity-card :id="$opportunity->id" :title="$opportunity->job_title" :company="$opportunity->company->company_name" :category="$opportunity->job_category"

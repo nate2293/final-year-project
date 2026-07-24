@@ -1,4 +1,4 @@
-<x-layouts.app>
+{{-- <x-layouts.app>
 
     <x-slot name="title">
         Application Details
@@ -11,11 +11,10 @@
 
             <div>
                 <h1 class="text-3xl font-bold text-gray-900">
-                    Software Developer Placement
-                </h1>
+                    {{ $activity->opportunity->job_title }} </h1>
 
                 <p class="mt-2 text-gray-600">
-                    Turner, Hackett and Bartell
+                    {{ $activity->opportunity->company->company_name }}
                 </p>
             </div>
 
@@ -39,35 +38,35 @@
                 <div>
                     <p class="text-sm font-medium text-gray-500">Company</p>
                     <p class="mt-1 text-gray-900">
-                        Turner, Hackett and Bartell
+                        {{ $activity->opportunity->company->company_name }}
                     </p>
                 </div>
 
                 <div>
                     <p class="text-sm font-medium text-gray-500">Opportunity</p>
                     <p class="mt-1 text-gray-900">
-                        Software Developer Placement
+                        {{ $activity->opportunity->job_title }}
                     </p>
                 </div>
 
                 <div>
                     <p class="text-sm font-medium text-gray-500">Location</p>
                     <p class="mt-1 text-gray-900">
-                        Belfast
+                        {{ $activity->opportunity->company->company_location }}
                     </p>
                 </div>
 
                 <div>
                     <p class="text-sm font-medium text-gray-500">Applied Date</p>
                     <p class="mt-1 text-gray-900">
-                        22 July 2026
+                        {{ $activity->created_at->format('d F Y') }}
                     </p>
                 </div>
 
                 <div>
                     <p class="text-sm font-medium text-gray-500">Closing Date</p>
                     <p class="mt-1 text-gray-900">
-                        15 August 2026
+                        {{ $activity->opportunity->application_deadline->format('d F Y') }}
                     </p>
                 </div>
 
@@ -87,7 +86,7 @@
             <div class="p-6">
 
                 <p class="text-gray-600">
-                    No notes have been added for this application.
+                    {{ $activity->notes ?? 'No notes available for this application.' }}
                 </p>
 
             </div>
@@ -101,7 +100,6 @@
                 class="rounded-lg border border-gray-300 px-5 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
 
                 Back to Applications
-
             </a>
 
             <button class="rounded-lg bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-indigo-700">
@@ -114,4 +112,4 @@
 
     </div>
 
-</x-layouts.app>
+{{-- </x-layouts.app> --}}

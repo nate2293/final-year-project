@@ -37,7 +37,7 @@ class OpportunityController extends Controller
             });
         }
 
-        $opportunities = $query->paginate(4)->withQueryString();
+        $opportunities = $query->paginate(6)->withQueryString();
 
         $statusOptions = [
             '' => 'All',

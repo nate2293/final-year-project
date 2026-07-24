@@ -45,8 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/applications/{activity}', [ApplicationController::class, 'show'])
         ->name('applications.show');
 
-    Route::get('/applications/{activity}/edit', [ApplicationController::class, 'edit'])
-        ->name('applications.edit');
+    // Route::get('/applications/{activity}/edit', [ApplicationController::class, 'edit'])
+    //     ->name('applications.edit');
 });
 
 

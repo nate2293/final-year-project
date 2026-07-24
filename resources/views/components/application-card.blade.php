@@ -1,4 +1,4 @@
-@props(['application'])
+@props(['application', 'activityOptions'])
 
 
 <div class="bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-200">
@@ -16,6 +16,10 @@
                     {{ $application->opportunity->company->company_name }}
                 </p>
             </div>
+
+            @php
+                $latestActivity = $application->opportunity->activities->sortByDesc('activity_date')->first();
+            @endphp
 
             <x-ui::badge :variant="$application->activity_type->badgeColor()">
                 {{ $application->activity_type->value }}
@@ -61,24 +65,9 @@
                 </p>
 
                 <p class="mt-1 text-sm font-medium text-gray-900">
-                    Today
+                    {{ $application->updated_at->format('d F Y') }}
                 </p>
             </div>
-
-        </div>
-
-        <div class="mt-6 flex items-center justify-between">
-
-            <span class="text-sm text-gray-500">
-                Tracking Application
-            </span>
-
-            <a href="{{ route('applications.show', $application) }}"
-                class="inline-flex items-center rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700 transition">
-
-                View Application
-
-            </a>
 
         </div>
 
