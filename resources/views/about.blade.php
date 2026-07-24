@@ -1,4 +1,4 @@
-<x-layouts.app>
+{{-- <x-layouts.app>
 
     <x-ui::breadcrumb :crumbs="[
         'Home' => '/',
@@ -49,5 +49,24 @@
 
     </x-ui::modal>
 
+
+</x-layouts.app>
+ --}}
+
+
+<x-layouts.app>
+
+    <x-ui::breadcrumb :crumbs="[
+        'Home' => '/',
+        'About' => '#',
+    ]" />
+
+    <x-divider>
+        <x-ui::heading level="3">About</x-ui::heading>
+    </x-divider>
+
+    <p class="mt-4">
+        Final Year Project.
+    </p>
 
 </x-layouts.app>
