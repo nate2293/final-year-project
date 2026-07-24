@@ -4,13 +4,13 @@
         'Settings' => null,
     ]" />
 
-    <x-ui::divider>
-        <x-ui::heading level="3">Settings</x-ui::heading>               
-    </x-ui::divider>
+    <x-divider>
+        <x-ui::heading level="3">Settings</x-ui::heading>
+    </x-divider>
 
-    
+
     <x-ui::tabs active="Profile">
-        <x-ui::tabs.tab name="Profile" href="{{ route('settings.profile.edit') }}" >
+        <x-ui::tabs.tab name="Profile" href="{{ route('settings.profile.edit') }}">
             <div class="flex-1">
                 <x-ui::card class="mb-6">
                     <!-- Profile Form -->
@@ -50,7 +50,7 @@
                 </x-ui::card>
             </div>
         </x-ui::tabs.tab>
-        <x-ui::tabs.tab name="Password" href="{{ route('settings.password.edit') }}" >
+        <x-ui::tabs.tab name="Password" href="{{ route('settings.password.edit') }}">
             <!-- Password Content -->
             <div class="flex-1">
                 <x-ui::card class="mb-6">
@@ -77,29 +77,26 @@
                 </x-ui::card>
             </div>
         </x-ui::tabs.tab>
-        <x-ui::tabs.tab name="Appearance" href="{{ route('settings.appearance.edit') }}" >
+        <x-ui::tabs.tab name="Appearance" href="{{ route('settings.appearance.edit') }}">
             <x-ui::card class="mb-6">
-                    <!-- Theme Selection -->
-                    <div class="mb-4">
-                        <x-ui::form.label for="theme">Theme</x-ui::form.label>
-                        <div class="inline-flex rounded-md shadow-sm mt-1" role="group">
-                            <x-ui::button variant="light" @click="dark = false"
-                                class="rounded-r-none border-r-0">
-                                Light
-                            </x-ui::button>
-                            <x-ui::button variant="light" @click="dark = true" 
-                                class="rounded-none border-r-0">
-                                Dark
-                            </x-ui::button>
-                            <x-ui::button variant="light" @click="dark = system" 
-                                class="rounded-l-none">
-                                System
-                            </x-ui::button>
-                        </div>
+                <!-- Theme Selection -->
+                <div class="mb-4">
+                    <x-ui::form.label for="theme">Theme</x-ui::form.label>
+                    <div class="inline-flex rounded-md shadow-sm mt-1" role="group">
+                        <x-ui::button variant="light" @click="dark = false" class="rounded-r-none border-r-0">
+                            Light
+                        </x-ui::button>
+                        <x-ui::button variant="light" @click="dark = true" class="rounded-none border-r-0">
+                            Dark
+                        </x-ui::button>
+                        <x-ui::button variant="light" @click="dark = system" class="rounded-l-none">
+                            System
+                        </x-ui::button>
                     </div>
-                </x-ui::card>
+                </div>
+            </x-ui::card>
         </x-ui::tabs.tab>
- 
+
     </x-ui::tabs>
 
 </x-layouts.app>

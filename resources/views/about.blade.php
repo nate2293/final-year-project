@@ -5,9 +5,9 @@
         'About' => '#',
     ]" />
 
-    <x-ui::divider>
+    <x-divider>
         <x-ui::heading level="3">About</x-ui::heading>
-    </x-ui::divider>
+    </x-divider>
 
 
     <x-ui::modal.open target="demo" class="btn btn-primary">
@@ -38,12 +38,12 @@
 
             <x-ui::form.otp label="Two Factor Authentication Code" name="otp_code" length="6" class="my-2" />
 
-            <x-ui::divider type="bottom">
+            <x-divider type="bottom">
                 <div>
                     <x-ui::button type="submit">Save</x-ui::button>
                     <x-ui::modal.close target="demo" variant="link">Cancel</x-ui::modal.close>
                 </div>
-            </x-ui::divider>
+            </x-divider>
 
         </form>
 

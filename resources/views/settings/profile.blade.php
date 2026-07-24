@@ -5,10 +5,10 @@
         'Profile' => '#',
     ]" />
 
-    <x-ui::divider>
+    <x-divider>
         <x-ui::heading level="3">Profile</x-ui::heading>       
         <p class="text-gray-600 dark:text-gray-400 mt-1">Update your name and email address</p>
-    </x-ui::divider>
+    </x-divider>
 
     <div class="p-6">
         <div class="flex flex-col md:flex-row gap-6">

@@ -2,9 +2,9 @@
 
     <x-ui::breadcrumb :crumbs="['Home' => route('home'), 'Users' => route('users.index')]" />
 
-    <x-ui::divider>
+    <x-divider>
         <x-ui::heading level="3">User Management</x-ui::heading>
-    </x-ui::divider>
+    </x-divider>
 
     @include('users._search')
 

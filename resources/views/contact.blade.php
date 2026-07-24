@@ -5,8 +5,8 @@
         'Contact' => '',
     ]" />
   
-    <x-ui::divider>
+    <x-divider>
         <x-ui::heading level="3">Contact</x-ui::heading>
-    </x-ui::divider>
+    </x-divider>
 
 </x-layouts.app>
