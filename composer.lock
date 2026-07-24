@@ -7236,11 +7236,18 @@
         },
         {
             "name": "termon/ui",
-            "version": "1.8.04",
+            "version": "1.8.42",
             "source": {
                 "type": "git",
                 "url": "https://github.com/termon/ui",
-                "reference": "a1bca53a890c4ed69df3d3cd64ae297524a95c54"
+                "reference": "b76ea9bc2abcdb9e033be52b83b945ae5aa704e7"
+            },
+            "require": {
+                "php": "^8.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^9.0|^10.0|^11.0",
+                "phpunit/phpunit": "^10.5|^11.5|^12.0"
             },
             "type": "library",
             "extra": {
@@ -7255,6 +7262,16 @@
                     "Termon\\Ui\\": "src/"
                 }
             },
+            "autoload-dev": {
+                "psr-4": {
+                    "Termon\\Ui\\Tests\\": "tests/"
+                }
+            },
+            "scripts": {
+                "test": [
+                    "vendor/bin/phpunit"
+                ]
+            },
             "authors": [
                 {
                     "name": "termon",
@@ -7262,7 +7279,7 @@
                 }
             ],
             "description": "Set of Blade View Components",
-            "time": "2026-03-01T13:32:28+00:00"
+            "time": "2026-07-20T19:17:25+00:00"
         },
         {
             "name": "thecodingmachine/safe",
