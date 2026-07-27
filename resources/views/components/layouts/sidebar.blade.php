@@ -27,7 +27,7 @@
 
         <x-ui::sidebar.link href="{{ route('activities.index') }}" icon="list" label="Activity" />
 
-        <x-ui::sidebar.link :href="route('opportunities.index')" icon="briefcase" label="Opportunities" />
+        <x-ui::sidebar.link :href="route('opportunities.index')" icon="book-open" label="Opportunities" />
 
         <x-ui::sidebar.link :href="route('applications.index')" icon="document" label="Applications" />
 

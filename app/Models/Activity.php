@@ -42,6 +42,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity whereNotes($value)
  * @property-read array $config_for
  * @property-read string $default_file
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Activity sortable($column = 'id', $direction = 'asc', array|string|null $default = null)
  * @mixin \Eloquent
  */
 class Activity extends Model
