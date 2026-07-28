@@ -22,13 +22,23 @@
                 {{-- Statistics --}}
                 <div class="xl:col-span-1 space-y-4">
 
-                    <x-ui::statistic title="Applications" :value="$applications" variant="blue" description="Applications Submitted" />
+                    <x-ui::statistic title="Applications" :value="$applications" variant="blue"
+                        description="Applications Submitted" />
 
                     <x-ui::statistic title="Interviews" :value="$interviews" variant="blue" description="Interviews Received" />
 
-                    <x-ui::statistic title="Assessments" :value="$assessments" variant="blue" description="Pending Assessments" />
+                    <x-ui::statistic title="Assessments" :value="$assessments" variant="blue"
+                        description="Pending Assessments" />
 
                     <x-ui::statistic title="Offers" :value="$offers" variant="blue" description="Offers Received" />
+
+
+                    <x-ui::card>
+                        <img src="{{ asset('images/ulster-careers-fair.png') }}" alt="Ulster Careers Fair"
+                            class="w-full h-full object-cover rounded-lg" />
+                    </x-ui::card>
+
+                
 
                 </div>
 

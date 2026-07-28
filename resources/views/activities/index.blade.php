@@ -6,11 +6,11 @@
     <x-ui::card class="mb-6">
         <x-slot:header>
             <div class="flex items-center justify-between">
-                <x-ui::heading level="3" class="mb-2">
+                <x-ui::heading level="3" class=" mb-6">
                     Activities
                 </x-ui::heading>
 
-                <div class="flex items-center gap-2">
+                <div class="flex items-center gap-2 mb-6">
 
                     <x-ui::link href="{{ route('activities.create') }}" variant="blue">
                         Log an Activity

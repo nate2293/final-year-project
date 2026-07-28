@@ -31,6 +31,9 @@ class ActivityController extends Controller
 
         // 
         $student = Student::where('user_id', auth()->user()->id)->first();
+        // dd(auth()->id(), $student);
+
+
 
         // Load activities, applying sort and pagination 
         $activities = Activity::where('student_id', $student->id)

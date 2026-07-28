@@ -17,9 +17,9 @@
 
             <div>
 
-                <h1 class="text-3xl font-bold text-gray-900 mt-5">
+                <x-ui::heading level="3" class="mt-5">
                     My Applications
-                </h1>
+                </x-ui::heading>
 
                 <form method="GET" action="{{ route('applications.index') }}" class="mb-6">
 

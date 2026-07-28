@@ -24,7 +24,7 @@
         <x-ui::display class="mb-1" label="Company" value="{{ $opportunity->company->company_name }}" />
         <x-ui::display class="mb-1" label="Address" value="{{ $opportunity->company->company_address }}" />
         <x-ui::display class="mb-1" label="Industry" value="{{ $opportunity->company->industry }}" />
-        <x-ui::display class="mb-1" label="Location" value="{{ $opportunity->company->company_location }}" />
+        <x-ui::display class="mb-1" label="Location" value="{{ $opportunity->company_location }}" />
         <x-ui::display class="mb-1" label="Job Description" value="{{ $opportunity->job_description }}" />
 
         {{-- Requirements Header--}}

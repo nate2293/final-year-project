@@ -67,40 +67,77 @@
 
     <div class="space-y-5">
 
+    <div>
+
         <p class="font-semibold text-gray-900 dark:text-white">
             {{ $company }}
-        </p>
-
-        <p class="text-sm text-gray-500 dark:text-gray-400">
-            {{ $category }}
         </p>
 
         <p class="text-sm text-gray-500 dark:text-gray-400">
             {{ $location }}
         </p>
 
-        <div class="flex items-center justify-between">
+    </div>
+
+    <div class="grid grid-cols-2 gap-5">
+
+        <div>
 
             <p class="text-sm text-gray-500 dark:text-gray-400">
-                Applications close:
-                <span class="font-semibold text-gray-900 dark:text-white">
-                    {{ $deadlineDate->format('d M Y') }} at 23:59
-                </span>
+                Category
             </p>
 
-            <span class="text-sm font-semibold {{ $deadlineColour }}">
+            <p class="font-semibold text-gray-900 dark:text-white">
+                {{ $category }}
+            </p>
+
+        </div>
+
+        <div>
+
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+                Closing Date
+            </p>
+
+            <p class="font-semibold text-gray-900 dark:text-white">
+                {{ $deadlineDate->format('d F Y') }}
+            </p>
+
+        </div>
+
+        <div>
+
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+                Location
+            </p>
+
+            <p class="font-semibold text-gray-900 dark:text-white">
+                {{ $location }}
+            </p>
+
+        </div>
+
+        <div>
+
+            <p class="text-sm text-gray-500 dark:text-gray-400">
+                Time Remaining
+            </p>
+
+            <p class="font-semibold {{ $deadlineColour }}">
                 {{ $deadlineLabel }}
-            </span>
+            </p>
 
         </div>
 
     </div>
 
+</div>
+
     <x-slot:footer>
 
         <div class="flex justify-end">
 
-            <x-ui::link href="{{ route('opportunities.show', $id) }}" variant="light" icon="information">
+            <x-ui::link href="{{ route('opportunities.show', $id) }}" variant="light" icon="eye">
 
             </x-ui::link>
 

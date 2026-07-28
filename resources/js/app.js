@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
             },
 
-            height: 650,
+            height: 742,
         });
 
         calendar.render();
