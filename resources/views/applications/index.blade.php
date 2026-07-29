@@ -39,7 +39,7 @@
 
                         {{-- Clear --}}
                         <div class="flex flex-col justify-end">
-                            <x-ui::link href="{{ route('applications.index') }}" variant="oblue">
+                            <x-ui::link href="{{ route('applications.index') }}" variant="light">
                                 Clear Filters
                             </x-ui::link>
                         </div>

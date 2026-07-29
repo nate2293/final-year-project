@@ -34,11 +34,15 @@
 
 
                     <x-ui::card>
-                        <img src="{{ asset('images/ulster-careers-fair.png') }}" alt="Ulster Careers Fair"
-                            class="w-full h-full object-cover rounded-lg" />
+                        <a href="https://www.ulster.ac.uk/student/employability" target="_blank" rel="noopener noreferrer">
+
+                            <img src="{{ asset('images/ulster-careers-fair.png') }}" alt="Ulster Careers Fair"
+                                class="w-full h-full object-cover rounded-lg hover:opacity-90 transition" />
+
+                        </a>
                     </x-ui::card>
 
-                
+
 
                 </div>
 
@@ -119,7 +123,7 @@
 
                         <div class="flex justify-end">
 
-                            <x-ui::link href="{{ route('activities.index') }}">
+                            <x-ui::link href="{{ route('activities.index') }}" variant="light">
                                 View All Activities
                             </x-ui::link>
 
@@ -181,7 +185,7 @@
 
                         <div class="flex justify-end">
 
-                            <x-ui::link href="{{ route('opportunities.index') }}">
+                            <x-ui::link href="{{ route('opportunities.index') }}" variant="light">
                                 View All Opportunities
                             </x-ui::link>
 

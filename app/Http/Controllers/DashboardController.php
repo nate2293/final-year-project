@@ -11,8 +11,15 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $recentApplications = Activity::with('opportunity.company')
-            ->latest()
+        // added below
+        $student = auth()->user()->student;
+        // $recentApplications = Activity::with('opportunity.company')
+        //     ->latest()
+        //     ->take(3)
+        //     ->get();
+        $recentApplications = $student->activities()
+            ->with('opportunity.company')
+            ->latest('activity_date')
             ->take(3)
             ->get();
 
@@ -26,13 +33,29 @@ class DashboardController extends Controller
             ->take(3)
             ->get();
 
-        $applications = Activity::where('activity_type', ActivityType::Application)->count();
+        // $applications = Activity::where('activity_type', ActivityType::Application)->count();
 
-        $interviews = Activity::where('activity_type', ActivityType::Interview)->count();
+        // $interviews = Activity::where('activity_type', ActivityType::Interview)->count();
 
-        $assessments = Activity::where('activity_type', ActivityType::Assessment)->count();
+        // $assessments = Activity::where('activity_type', ActivityType::Assessment)->count();
 
-        $offers = Activity::where('activity_type', ActivityType::Offer)->count();
+        // $offers = Activity::where('activity_type', ActivityType::Offer)->count();
+
+        $applications = $student->activities()
+            ->where('activity_type', ActivityType::Application)
+            ->count();
+
+        $interviews = $student->activities()
+            ->where('activity_type', ActivityType::Interview)
+            ->count();
+
+        $assessments = $student->activities()
+            ->where('activity_type', ActivityType::Assessment)
+            ->count();
+
+        $offers = $student->activities()
+            ->where('activity_type', ActivityType::Offer)
+            ->count();
 
         return view('welcome', compact(
             'latestOpportunities',

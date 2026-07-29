@@ -21,11 +21,30 @@ class AuthenticationSystemTest extends TestCase
         $response->assertRedirect(route('login'));
     }
 
+    // public function test_auth_middleware_allows_authenticated_users(): void
+    // {
+    //     // Arrange
+    //     /** @var \App\Models\User $user */
+    //     $user = User::factory()->create();
+    //     $this->actingAs($user);
+
+    //     // Act
+    //     $response = $this->get(route('home'));
+
+    //     // Assert
+    //     $response->assertOk();
+    // }
+
     public function test_auth_middleware_allows_authenticated_users(): void
     {
-        // Arrange
+    // Arrange
         /** @var \App\Models\User $user */
         $user = User::factory()->create();
+
+        \App\Models\Student::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
         $this->actingAs($user);
 
         // Act

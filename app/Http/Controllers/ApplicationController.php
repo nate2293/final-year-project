@@ -23,8 +23,6 @@ class ApplicationController extends Controller
             ->orderBy('activity_date', 'desc')
             ->paginate(6);
 
-        // dd(\App\Enums\ActivityType::options());
-
 
         $activityOptions = \App\Enums\ActivityType::options();
 

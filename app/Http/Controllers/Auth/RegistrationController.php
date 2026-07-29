@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -24,14 +25,30 @@ class RegistrationController extends Controller
     {
         $validated = $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             //'password' => ['required', 'confirmed', Rules\Password::defaults()],
             'password' => ['required', 'confirmed']
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered(($user = User::create($validated))));
+        // event(new Registered(($user = User::create($validated))));
+
+        // Auth::login($user);
+
+        // added this 
+        $user = User::create($validated);
+
+        Student::create([
+            'user_id' => $user->id,
+            'name' => $user->name,
+            'university' => 'Ulster University',
+            'phone_number' => null,
+            'address' => null,
+            'linkedin_profile' => null,
+        ]);
+
+        event(new Registered($user));
 
         Auth::login($user);
 

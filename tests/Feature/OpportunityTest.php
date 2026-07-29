@@ -68,42 +68,45 @@ class OpportunityTest extends TestCase
     }
 
     #[Test]
-    public function authenticated_user_can_filter_opportunities_by_activity_type()
-    {
-        $user = User::factory()->create();
+public function authenticated_user_can_filter_opportunities_by_activity_type()
+{
+    $user = User::factory()->create();
 
-        $student = Student::factory()->create([
-            'user_id' => $user->id,
-        ]);
+    $student = Student::factory()->create([
+        'user_id' => $user->id,
+    ]);
 
-        $applicationOpportunity = Opportunity::factory()->create();
+    $applicationOpportunity = Opportunity::factory()->create([
+        'job_title' => 'Laravel Developer',
+    ]);
 
-        $interviewOpportunity = Opportunity::factory()->create();
+    $interviewOpportunity = Opportunity::factory()->create([
+        'job_title' => 'Software Engineer',
+    ]);
 
-        Activity::factory()->create([
-            'student_id' => $student->id,
-            'opportunity_id' => $applicationOpportunity->id,
-            'activity_type' => 'application',
-        ]);
+    Activity::factory()->create([
+        'student_id' => $student->id,
+        'opportunity_id' => $applicationOpportunity->id,
+        'activity_type' => 'application',
+    ]);
 
-        Activity::factory()->create([
-            'student_id' => $student->id,
-            'opportunity_id' => $interviewOpportunity->id,
-            'activity_type' => 'interview',
-        ]);
+    Activity::factory()->create([
+        'student_id' => $student->id,
+        'opportunity_id' => $interviewOpportunity->id,
+        'activity_type' => 'interview',
+    ]);
 
-        $response = $this
-            ->actingAs($user)
-            ->get(route('opportunities.index', [
-                'status' => 'application',
-            ]));
+    $response = $this
+        ->actingAs($user)
+        ->get(route('opportunities.index', [
+            'status' => 'application',
+        ]));
 
-        $response->assertOk();
+    $response->assertOk();
 
-        $response->assertSee($applicationOpportunity->job_title);
-
-        $response->assertDontSee($interviewOpportunity->job_title);
-    }
+    $response->assertSee('Laravel Developer');
+    $response->assertDontSee('Software Engineer');
+}
 
     #[Test]
     public function authenticated_user_can_view_a_single_opportunity()

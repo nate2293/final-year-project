@@ -28,8 +28,8 @@
                             onchange="this.form.submit()" />
                     </div>
 
-                    <div class="flex flex-col justify-end"> <x-ui::link href="{{ route('opportunities.index') }}"
-                            variant="oblue">
+                    <div class="flex flex-col justify-end">
+                        <x-ui::link href="{{ route('opportunities.index') }}" variant="light">
                             Clear Filters
                         </x-ui::link>
                     </div>

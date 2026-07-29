@@ -28,6 +28,10 @@ class CalendarTest extends TestCase
     {
         $user = User::factory()->create();
 
+        Student::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
         $response = $this
             ->actingAs($user)
             ->get(route('calendar.events'));
@@ -70,7 +74,7 @@ class CalendarTest extends TestCase
         $response->assertOk();
 
         $response->assertJsonFragment([
-            'title' => 'Application',
+            'title' => '📝 Application',
         ]);
 
         $response->assertJsonFragment([
@@ -86,6 +90,10 @@ class CalendarTest extends TestCase
     public function application_deadlines_are_returned_in_the_calendar_feed()
     {
         $user = User::factory()->create();
+
+        Student::factory()->create([
+            'user_id' => $user->id,
+        ]);
 
         $company = Company::factory()->create([
             'company_name' => 'Microsoft',
@@ -104,7 +112,7 @@ class CalendarTest extends TestCase
         $response->assertOk();
 
         $response->assertJsonFragment([
-            'title' => 'Deadline',
+            'title' => '⏰ Deadline',
         ]);
 
         $response->assertJsonFragment([

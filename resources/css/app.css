@@ -29,6 +29,29 @@ FullCalendar Improvements
     background-color: #f4f2f2;
 }
 
+/* Dark mode - Weekend columns */
+.dark .fc .fc-day-sat,
+.dark .fc .fc-day-sun {
+    background-color: #273449;
+}
+
+.dark .fc .fc-col-header-cell-cushion {
+    color: #f8fafc;
+}
+
+.dark .fc-theme-standard td,
+.dark .fc-theme-standard th {
+    border-color: #374151;
+}
+
+.dark .fc-theme-standard .fc-scrollgrid {
+    border-color: #374151;
+}
+
+.dark .fc .fc-daygrid-day-number {
+    color: #f8fafc;
+}
+
 /* Make the column headers a bit bolder and larger */
 .fc .fc-col-header-cell-cushion {
     font-weight: 700;

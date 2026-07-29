@@ -9,7 +9,10 @@ class CalendarController extends Controller
 {
     public function events()
     {
+        $student = auth()->user()->student;
+
         $activities = Activity::with('opportunity.company')
+            ->where('student_id', $student->id)
             ->get()
             ->map(function ($activity) {
 

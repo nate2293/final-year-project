@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use Tests\TestCase;
 use App\Models\User;
+use App\Models\Student;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use PHPUnit\Framework\Attributes\Test;
 
@@ -24,6 +25,10 @@ class DashboardTest extends TestCase
     {
         $user = User::factory()->create();
 
+        Student::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
         $response = $this
             ->actingAs($user)
             ->get(route('home'));
@@ -36,9 +41,15 @@ class DashboardTest extends TestCase
     {
         $user = User::factory()->create();
 
+        Student::factory()->create([
+            'user_id' => $user->id,
+        ]);
+
         $response = $this
             ->actingAs($user)
             ->get(route('home'));
+
+        $response->assertOk();
 
         $response->assertSee('Applications');
         $response->assertSee('Interviews');
